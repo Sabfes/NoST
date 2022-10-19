@@ -1,0 +1,24 @@
+.App {
+    height: 100vh;
+    width: 100vw;
+}
+
+.Cont {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.Post {
+    margin-top: 10px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+    background: lightblue;
+    width: 500px;
+    height: 100px;
+}

@@ -1,0 +1,1 @@
+export const ServerString = 'http://localhost:3030'

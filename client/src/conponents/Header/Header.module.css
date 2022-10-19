@@ -1,0 +1,18 @@
+.Header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 80px;
+    width: 100%;
+    background: #dddde5;
+}
+
+.Header__logo {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    font-family: "Roboto Light", sans-serif;
+    border-bottom: 3px solid #8192a9;
+}
