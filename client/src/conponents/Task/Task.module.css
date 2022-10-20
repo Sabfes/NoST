@@ -1,0 +1,49 @@
+.Task {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    padding: 20px;
+    height: 40px;
+}
+.Task:hover {
+    cursor: pointer;
+    border: 1px solid #5e6f82;
+}
+
+.Task__number {
+    font-weight: 800;
+    color: white;
+    margin-right: 20px;
+    margin-left: 40px;
+}
+
+.Task__date {
+    margin-left: 40px;
+}
+
+.Task > div {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.Task > div > span {
+    margin-left: 10px;
+}
+
+.checkIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    color: #5e6f82;
+    border: 2px solid #5e6f82;
+}
+.checkIconActive {
+    color: #2eb22e;
+    border: 2px solid #2eb22e;
+}

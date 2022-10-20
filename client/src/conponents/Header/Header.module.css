@@ -1,18 +1,35 @@
 .Header {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    padding-left: 40px;
-    padding-right: 40px;
-    height: 80px;
-    width: 100%;
-    background: #dddde5;
+    justify-content: space-between;
+    padding: 40px;
 }
 
-.Header__logo {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 800;
-    font-family: "Roboto Light", sans-serif;
-    border-bottom: 3px solid #8192a9;
+.Header__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #5e6f82;
+}
+
+.addBtn {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: #2eb22e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    transition: 1s;
+}
+.addBtn:hover {
+    transform: scale(1.05);
+    box-shadow: -1px -1px 35px 5px rgba(0, 255, 75, 0.2);
+    font-size: 10px;
+}
+.addBtn > span {
+    font-weight: 400;
+    font-size: 30px;
+    color: #0b1727;
+    transform: translateY(-2px);
 }
