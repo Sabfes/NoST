@@ -1,14 +1,16 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import Post from "./Post.js";
-import {router} from "./router.js";
+import {router} from "./routers/router.js"
+import config from "./config/config.json" assert { type: 'json' }
+import cors from "./middleware/cors.middleware.js";
 
 const DB_URL = 'mongodb+srv://user:user@cluster0.sfq7ugr.mongodb.net/?retryWrites=true&w=majority'
-const PORT = 5222
+const PORT = config.PORT
 
 const app = express()
+app.use(cors)
 app.use(express.json())
-app.use('api', router)
+app.use('/api', router)
 
 // GET
 app.get('/', (req, res) => {

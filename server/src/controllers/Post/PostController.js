@@ -1,6 +1,7 @@
-import Post from "./Post.js";
+import Post from "../../models/Post/Post.js";
 
 class PostController {
+  // Создание нового поста
   async createPost(req, res) {
     try {
       const post = await Post.create({
@@ -14,15 +15,18 @@ class PostController {
     }
   }
 
+  // Получение списка всех постов
   async getAllPosts(req, res) {
     try {
-      const posts = Post.find()
+      const posts = await Post.find()
+      console.log(posts)
       res.status(200).json(posts)
     } catch (e) {
       res.status(500).json(e)
     }
   }
 
+  // Получение одного поста по id
   async getOnePost(req, res) {
     try {
       if (req.params.id) {
@@ -36,6 +40,7 @@ class PostController {
     }
   }
 
+  // Изменение, апдейт поста
   async changePost(req, res) {
     try {
       const post = req.body
@@ -49,6 +54,7 @@ class PostController {
     }
   }
 
+  // Удаление поста
   async deletePost(req, res) {
     try {
       if (!req.body.id) {
