@@ -1,17 +1,17 @@
 import styles from './App.module.css';
 import {useEffect, useState} from "react";
-import Header from "./conponents/Header/Header";
+import Header from "./components/Header/Header";
 import axios from "axios";
-import Sidebar from "./conponents/Sidebar/Sidebar";
-import Task from "./conponents/Task/Task";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Task from "./components/Task/Task";
+import AddNewTaskModal from "./components/AddNewTaskModal/AddNewTaskModal";
 
 function App() {
   const [posts, setPosts] = useState([])
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+  const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(false)
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/posts`)
+    axios.get(`http://localhost:8000/api/tasks`)
     .then(res => {
       if (res.status === 200) {
         setPosts(res.data)
@@ -22,20 +22,19 @@ function App() {
     })
   }, [])
 
-  const addNewPost = () => {
-    axios.post('http://localhost:8000/api/posts', {
-      content,
-      title,
-      author: 'Denis'
+  const addNewTask = (taskTitle, taskText, date) => {
+    axios.post('http://localhost:8000/api/tasks', {
+      taskText,
+      taskTitle,
+      date
     }).then(res => {
-      console.log(res)
       if (res.status === 200) {
         setPosts([...posts, res.data])
-        setTitle('')
-        setContent('')
       }
     }).catch(e => {
       console.log(e)
+    }).finally(() => {
+      return true
     })
   }
 
@@ -44,7 +43,9 @@ function App() {
       <Sidebar/>
 
       <div className={styles.mainCont}>
-        <Header/>
+        <Header
+          setShowAddTaskModal={setShowAddNewTaskModal}
+        />
 
         <div className={styles.Cont}>
           <p className={styles.Cont__title}>
@@ -69,6 +70,14 @@ function App() {
       <div className={styles.contInfo}>
 
       </div>
+
+
+      {
+        showAddNewTaskModal && <AddNewTaskModal
+          addNewTask={addNewTask}
+          setShow={setShowAddNewTaskModal}
+        />
+      }
     </div>
   );
 }

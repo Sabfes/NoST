@@ -18,10 +18,10 @@ const Task = ({el}) => {
      Task author: {el.author}
     </span>
       <span>
-     Task Title: {el.title}
+     Task Title: {el.taskTitle}
     </span>
       <span>
-      Task main content: {el.content}
+      Task main content: {el.taskText}
     </span>
     </div>
 
