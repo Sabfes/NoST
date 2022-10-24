@@ -1,0 +1,35 @@
+.Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.Header__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #5e6f82;
+}
+
+.addBtn {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: #2eb22e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    transition: 1s;
+}
+.addBtn:hover {
+    transform: scale(1.05);
+    box-shadow: -1px -1px 35px 5px rgba(0, 255, 75, 0.2);
+    font-size: 10px;
+}
+.addBtn > span {
+    font-weight: 400;
+    font-size: 30px;
+    color: #0b1727;
+    transform: translateY(-2px);
+}
