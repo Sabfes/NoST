@@ -1,9 +1,8 @@
 import Post from "../../models/Post/Post.js";
-import {Request, Response} from "express";
 
 class PostController {
   // Создание нового поста
-  async createPost(req: Request, res: Response) {
+  async createPost(req, res) {
     try {
       const post = await Post.create({
         author: req.body.author,
@@ -17,7 +16,7 @@ class PostController {
   }
 
   // Получение списка всех постов
-  async getAllPosts(req: Request, res: Response) {
+  async getAllPosts(req, res) {
     try {
       const posts = await Post.find()
       console.log(posts)
@@ -28,12 +27,11 @@ class PostController {
   }
 
   // Получение одного поста по id
-  async getOnePost(req: Request, res: Response) {
+  async getOnePost(req, res) {
     try {
       if (req.params.id) {
-        // const post = Post.find(req.params.id)
-        // res.status(200).json(post)
-        res.status(200)
+        const post = Post.find(req.params.id)
+        res.status(200).json(post)
       } else {
         res.status(400).json('Пост не найден или id не указан')
       }
@@ -43,7 +41,7 @@ class PostController {
   }
 
   // Изменение, апдейт поста
-  async changePost(req: Request, res: Response) {
+  async changePost(req, res) {
     try {
       const post = req.body
       if (post.id) {
@@ -57,7 +55,7 @@ class PostController {
   }
 
   // Удаление поста
-  async deletePost(req: Request, res: Response) {
+  async deletePost(req, res) {
     try {
       if (!req.body.id) {
         res.status(400).json('Id не указан')
