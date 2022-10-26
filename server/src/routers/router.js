@@ -3,8 +3,8 @@ import postController from "../controllers/Post/PostController.js";
 
 export const router = new Router()
 
-router.post('/posts', postController.createPost)
-router.get('/posts', postController.getAllPosts)
-router.get('/posts/:id', postController.getOnePost)
-router.put('/posts/:id', postController.changePost)
-router.delete('/posts/:id', postController.deletePost)
+router.post('/tasks', postController.createPost)
+router.get('/tasks', postController.getAllPosts)
+router.get('/tasks/:id', postController.getOnePost)
+router.put('/tasks/:id', postController.changePost)
+router.delete('/tasks/:id', postController.deletePost)

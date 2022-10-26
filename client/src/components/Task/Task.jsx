@@ -1,13 +1,22 @@
 import React, {useState} from "react";
 import styles from './Task.module.css'
 import moment from "moment";
+import axios from "axios";
 
 const Task = ({el}) => {
   const [isActive, setIsActive] = useState(false)
 
+  const markAsReadToggle = (id) => {
+    axios.put(`http://localhost:8000/api/tasks/${id}`)
+    .then(res => {
+      console.log(res)
+    })
+  }
+
+
   return <div
     className={styles.Task}
-    onClick={() => setIsActive(true)}
+    onClick={() => markAsReadToggle(el._id)}
   >
     <div>
       <div className={`${styles.checkIcon} ${isActive && styles.checkIconActive}`}>
