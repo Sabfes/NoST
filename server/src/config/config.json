@@ -1,3 +1,5 @@
 {
-  "PORT": 8000
+  "PORT": 8000,
+  "dbUrl": "mongodb+srv://user:user@cluster0.sfq7ugr.mongodb.net/?retryWrites=true&w=majority",
+  "secretKey": "mern-secret-key"
 }

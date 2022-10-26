@@ -1,10 +1,10 @@
-import Post from "../../models/Post/Post.js";
+ import Task from "../../models/Task/Task.js";
 
-class PostController {
-  // Создание нового поста
-  async createPost(req, res) {
+class TaskController {
+  // Создание новой Task
+  async createTask(req, res) {
     try {
-      const post = await Post.create({
+      const post = await Task.create({
         author: req.body.author,
         title: req.body.title,
         content: req.body.content
@@ -15,22 +15,21 @@ class PostController {
     }
   }
 
-  // Получение списка всех постов
-  async getAllPosts(req, res) {
+  // Получение списка всех Tasks
+  async getAllTasks(req, res) {
     try {
-      const posts = await Post.find()
-      console.log(posts)
+      const posts = await Task.find()
       res.status(200).json(posts)
     } catch (e) {
       res.status(500).json(e)
     }
   }
 
-  // Получение одного поста по id
-  async getOnePost(req, res) {
+  // Получение одного Task по id
+  async getOneTask(req, res) {
     try {
       if (req.params.id) {
-        const post = Post.find(req.params.id)
+        const post = Task.find(req.params.id)
         res.status(200).json(post)
       } else {
         res.status(400).json('Пост не найден или id не указан')
@@ -40,33 +39,33 @@ class PostController {
     }
   }
 
-  // Изменение, апдейт поста
-  async changePost(req, res) {
+  // Изменение, апдейт Task
+  async changeTask(req, res) {
     try {
       const post = req.body
       if (post.id) {
         res.status(400).json('Id не указан')
       }
-      const updatedPost = Post.findByIdAndUpdate(post.id, post, {new: true})
+      const updatedPost = Task.findByIdAndUpdate(post.id, post, {new: true})
       res.status(200).json(updatedPost)
     } catch (e) {
       res.status(500).json(e)
     }
   }
 
-  // Удаление поста
-  async deletePost(req, res) {
+  // Удаление Task
+  async deleteTask(req, res) {
     try {
       if (!req.body.id) {
         res.status(400).json('Id не указан')
       } else {
         const postId = req.body.id
-        const deletedPost = Post.findByIdAndDelete(postId)
-        res.status(200).json(deletedPost)
+        const deletedTask = Task.findByIdAndDelete(postId)
+        res.status(200).json(deletedTask)
       }
     } catch (e) {
       res.status(500).json(e)
     }
   }
 }
-export default new PostController()
+export default new TaskController()

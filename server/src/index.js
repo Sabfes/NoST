@@ -1,16 +1,19 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import {router} from "./routers/router.js"
+import {taskRoutes} from "./routers/task.routes.js"
 import config from "./config/config.json" assert { type: 'json' }
 import cors from "./middleware/cors.middleware.js";
+import authRouter from "./routers/auth.routes.js";
 
-const DB_URL = 'mongodb+srv://user:user@cluster0.sfq7ugr.mongodb.net/?retryWrites=true&w=majority'
+const DB_URL = config.dbUrl
 const PORT = config.PORT
+//killall -9 node ps ax
 
 const app = express()
 app.use(cors)
 app.use(express.json())
-app.use('/api', router)
+app.use('/api', taskRoutes)
+app.use('/api/auth', authRouter)
 
 // GET
 app.get('/', (req, res) => {
