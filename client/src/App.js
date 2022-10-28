@@ -1,85 +1,28 @@
 import styles from './App.module.css';
-import {useEffect, useState} from "react";
-import Header from "./components/Header/Header";
-import axios from "axios";
-import Sidebar from "./components/Sidebar/Sidebar";
-import Task from "./components/Task/Task";
-import AddNewTaskModal from "./components/AddNewTaskModal/AddNewTaskModal";
+import {Route, Routes} from "react-router-dom";
+import TodoPage from "./pages/Todo/TodoPage";
+import {useState} from "react";
+import LoginPage from "./pages/Login/LoginPage";
+import RegistrationPage from "./pages/Registration/RegistrationPage";
 
 function App() {
-  const [posts, setPosts] = useState([])
-  const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(false)
+  const [isAuth, setIsAuth] = useState(false)
 
-  useEffect(() => {
-    axios.get(`http://localhost:8000/api/tasks`)
-    .then(res => {
-      if (res.status === 200) {
-        setPosts(res.data)
-      }
-    })
-    .catch(e => {
-      console.log(e)
-    })
-  }, [])
+  return <div className={styles.App}>
+    {
+      isAuth
+        ?<Routes>
+          <Route path={'/todo'} element={<TodoPage/>}/>
+          <Route path={'*'} element={<TodoPage/>}/>
+        </Routes>
+        :<Routes>
 
-  const addNewTask = (taskTitle, taskText, date) => {
-    axios.post('http://localhost:8000/api/tasks', {
-      taskText,
-      taskTitle,
-      date
-    }).then(res => {
-      if (res.status === 200) {
-        setPosts([...posts, res.data])
-      }
-    }).catch(e => {
-      console.log(e)
-    }).finally(() => {
-      return true
-    })
-  }
-
-  return (
-    <div className={styles.App}>
-      <Sidebar/>
-
-      <div className={styles.mainCont}>
-        <Header
-          setShowAddTaskModal={setShowAddNewTaskModal}
-        />
-
-        <div className={styles.Cont}>
-          <p className={styles.Cont__title}>
-            v Today {posts.length && `(${posts.length})`}
-          </p>
-
-          {
-            posts.length > 0 && <div>
-              {
-                posts.map(el => {
-                  return <Task
-                    el={el}
-                    key={el._id}
-                  />
-                })
-              }
-            </div>
-          }
-        </div>
-      </div>
-
-      <div className={styles.contInfo}>
-
-      </div>
-
-
-      {
-        showAddNewTaskModal && <AddNewTaskModal
-          addNewTask={addNewTask}
-          setShow={setShowAddNewTaskModal}
-        />
-      }
-    </div>
-  );
+          <Route path={'/login'} element={<LoginPage/>}/>
+          <Route path={'/registration'} element={<RegistrationPage/>} />
+          <Route path={'*'} element={<LoginPage/>}/>
+        </Routes>
+    }
+  </div>
 }
 
 export default App;
