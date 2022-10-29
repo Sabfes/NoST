@@ -1,4 +1,4 @@
-import jwt, {decode} from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import config from "../config/config.json" assert {type: 'json'};
 
 function authMiddleware (req, res, next) {
