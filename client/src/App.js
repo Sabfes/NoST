@@ -6,7 +6,7 @@ import LoginPage from "./pages/Login/LoginPage";
 import RegistrationPage from "./pages/Registration/RegistrationPage";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false)
+  const [isAuth, setIsAuth] = useState(true)
 
   return <div className={styles.App}>
     {
@@ -16,7 +16,6 @@ function App() {
           <Route path={'*'} element={<TodoPage/>}/>
         </Routes>
         :<Routes>
-
           <Route path={'/login'} element={<LoginPage/>}/>
           <Route path={'/registration'} element={<RegistrationPage/>} />
           <Route path={'*'} element={<LoginPage/>}/>
