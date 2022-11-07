@@ -5,8 +5,9 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
-    padding: 20px;
+    padding: 24px;
     height: 40px;
+    min-width: 45rem;
 }
 .Task:hover {
     cursor: pointer;

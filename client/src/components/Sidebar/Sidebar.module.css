@@ -5,13 +5,9 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    height: 100vh;
     position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    min-width: 80px;
-    height: 100%;
-    width: 80px;
+    width: 5rem;
     border-right: 1px solid #232e3c;
 }
 

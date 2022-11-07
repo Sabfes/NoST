@@ -1,13 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import styles from './Task.module.css'
-import moment from "moment";
-import axios from "axios";
 import IconCont from "../common/IconCont";
 import {RiDeleteBin5Fill} from "react-icons/ri";
 import {useDispatch} from "react-redux";
 import {deleteTaskById} from "../../store/actions/tasks.actions";
 
-const Task = ({el}) => {
+const Task = ({el, index}) => {
   const dispatch = useDispatch()
   //TODO
   // const markAsReadToggle = (id) => {
@@ -23,7 +21,6 @@ const Task = ({el}) => {
 
   return <div
     className={styles.Task}
-    // onClick={() => markAsReadToggle(el._id)}
   >
     <div>
       <div className={`${styles.checkIcon} ${el.isActive && styles.checkIconActive}`}>
@@ -31,19 +28,18 @@ const Task = ({el}) => {
       </div>
 
       <span>
-     Task author: {el.author}
+     Author: {el.author}
     </span>
       <span>
-     Task Title: {el.title}
+     Title: {el.title}
     </span>
       <span>
-      Task main content: {el.content}
+      Content: {el.content}
     </span>
     </div>
 
     <div className={''}>
-      <span className={styles.Task__number}>#243</span>
-      <span className={styles.Task__date}>{moment().format('DD.MM.YYYY')}</span>
+      <span className={styles.Task__number}>#{index}</span>
 
       <IconCont
         w={24}

@@ -1,5 +1,5 @@
 .Container {
-    margin-top: 25px;
+    margin-top: 1.5rem;
     position: relative;
     width: 100%;
     height: 48px;
@@ -35,4 +35,33 @@
     left: 0;
     top: -10px;
     font-size: 12px;
+}
+
+.textArea {
+    position: relative;
+    margin-top: 1.5rem;
+    height: 10rem;
+}
+.textArea .Input__label {
+    top: 30px;
+}
+.textArea .Input_active {
+    transition: .5s;
+    left: 0;
+    top: -10px;
+    font-size: 12px;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    background: #232e3c;
+    font-size: 16px;
+    font-weight: 100;
+    color: #5e6f82;
 }
