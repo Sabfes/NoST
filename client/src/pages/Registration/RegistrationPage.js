@@ -2,10 +2,17 @@ import React, {useState} from "react";
 import styles from './RegistrationPage.module.css'
 import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
+import {useDispatch} from "react-redux";
+import {registrMe} from "../../store/actions/auth.action";
 
 const RegistrationPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+
+  const registrationHandler = () => {
+    dispatch(registrMe({email, password}))
+  }
 
   return <div
     className={styles.RegistrationPage}
@@ -17,7 +24,13 @@ const RegistrationPage = () => {
 
       <div className={styles.RegistrationPage__btns}>
         <Button w={'49%'} linkTo={'/login'} type={'outline'}>Back to login</Button>
-        <Button w={'49%'} type={'submit'}>Submit</Button>
+        <Button
+          w={'49%'}
+          type={'submit'}
+          onClick={registrationHandler}
+        >
+          Submit
+        </Button>
       </div>
     </div>
   </div>

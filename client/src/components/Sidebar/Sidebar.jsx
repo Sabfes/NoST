@@ -3,8 +3,12 @@ import styles from './Sidebar.module.css'
 
 import { ImExit } from "react-icons/im"
 import IconCont from "../common/IconCont";
+import {useDispatch} from "react-redux";
+import {setIsAuth} from "../../store/slices/auth.slice";
 
 const Sidebar = () => {
+  const dispatch = useDispatch()
+
   return <div className={styles.Sidebar}>
     <div className={styles.Sidebar__logo}>
       TL
@@ -15,7 +19,13 @@ const Sidebar = () => {
     </div>
 
     <div>
-      <IconCont w={25} h={25}>
+      <IconCont
+        onClick={() => {
+          dispatch(setIsAuth(false))
+        }}
+        w={25}
+        h={25}
+      >
         <ImExit size={'100%'}/>
       </IconCont>
     </div>
