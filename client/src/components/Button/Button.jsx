@@ -1,9 +1,15 @@
 import React from "react";
 import styles from "./Button.module.css"
 import classNames from "classnames";
+import {useNavigate} from "react-router";
 
-const Button = ({children, type, w}) => {
+const Button = ({children, type, w, linkTo}) => {
+  const navigate = useNavigate()
+
   return <button
+    onClick={() => {
+      if (linkTo) navigate(linkTo)
+    }}
     style={{
       width: w ? w : '100%',
     }}

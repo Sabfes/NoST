@@ -12,19 +12,19 @@ const LoginPage = () => {
       <h1 className={styles.modal__title}>Login</h1>
       <InputField
         type={'text'}
-        placeholder={'email'}
+        placeholder={'Email'}
         value={email}
         setValue={setEmail}
       />
       <InputField
         type={'text'}
-        placeholder={'password'}
+        placeholder={'Password'}
         value={password}
         setValue={setPassword}
       />
 
       <div className={styles.LoginPage__btns}>
-        <Button w={'49%'} type={'outline'}>Registration</Button>
+        <Button w={'49%'} linkTo={'/registration'} type={'outline'}>Registration</Button>
         <Button w={'49%'} type={'submit'}>Sign in</Button>
       </div>
     </div>
