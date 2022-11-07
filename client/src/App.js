@@ -4,9 +4,10 @@ import TodoPage from "./pages/Todo/TodoPage";
 import {useState} from "react";
 import LoginPage from "./pages/Login/LoginPage";
 import RegistrationPage from "./pages/Registration/RegistrationPage";
+import {useSelector} from "react-redux";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true)
+  const isAuth = useSelector(state => state.user.isAuth)
 
   return <div className={styles.App}>
     {
