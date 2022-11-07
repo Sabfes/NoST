@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {addNewTask, getAllTasks} from "../actions/tasks.actions";
+import {addNewTask, deleteTaskById, getAllTasks} from "../actions/tasks.actions";
 
 const initialState = {
   tasksList: []
@@ -13,13 +13,14 @@ export const TasksSlice = createSlice({
       state.tasksList = action.payload
     });
     builder.addCase(addNewTask.fulfilled, (state, action) => {
-      state.tasksList = [...state.tasksList, action.payload]
+      state.tasksList = [action.payload, ...state.tasksList]
+    });
+    builder.addCase(deleteTaskById.fulfilled, (state, action) => {
+      state.tasksList = state.tasksList.filter(el => el._id !== action.payload)
     })
   },
-  reducers: {
-  }
+  reducers: {}
 });
 
 export default TasksSlice.reducer;
-// export const {
-// } = TasksSlice.actions;
+// export const {} = TasksSlice.actions;

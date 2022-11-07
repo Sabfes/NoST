@@ -6,5 +6,8 @@ export const apiTasks = {
   },
   addNewTask: (data) => {
     return instanceWithoutToken.post('/api/tasks', data)
+  },
+  deleteTestById: (taskId) => {
+    return instanceWithoutToken.delete(`/api/tasks/${taskId}`)
   }
 };

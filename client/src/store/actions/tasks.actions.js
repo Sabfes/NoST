@@ -22,3 +22,14 @@ export const addNewTask = createAsyncThunk(
     }
   }
 )
+
+export const deleteTaskById = createAsyncThunk(
+  'tasks/deleteById',
+  async (taskId) => {
+    const res = await apiTasks.deleteTestById(taskId)
+
+    if (res.status === 200) {
+      return taskId
+    }
+  }
+)
