@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 
 function App() {
   const isAuth = useSelector(state => state.auth.isAuth)
-  console.log(isAuth)
+
   return <div className={styles.App}>
     {
       isAuth

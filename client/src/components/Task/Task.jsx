@@ -4,8 +4,7 @@ import moment from "moment";
 import axios from "axios";
 
 const Task = ({el}) => {
-  const [isActive, setIsActive] = useState(false)
-
+  //TODO
   const markAsReadToggle = (id) => {
     axios.put(`http://localhost:8000/api/tasks/${id}`)
     .then(res => {
@@ -19,7 +18,7 @@ const Task = ({el}) => {
     onClick={() => markAsReadToggle(el._id)}
   >
     <div>
-      <div className={`${styles.checkIcon} ${isActive && styles.checkIconActive}`}>
+      <div className={`${styles.checkIcon} ${el.isActive && styles.checkIconActive}`}>
         v
       </div>
 
@@ -27,10 +26,10 @@ const Task = ({el}) => {
      Task author: {el.author}
     </span>
       <span>
-     Task Title: {el.taskTitle}
+     Task Title: {el.title}
     </span>
       <span>
-      Task main content: {el.taskText}
+      Task main content: {el.content}
     </span>
     </div>
 

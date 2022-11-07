@@ -4,38 +4,26 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 import Task from "../../components/Task/Task";
 import AddNewTaskModal from "../../components/AddNewTaskModal/AddNewTaskModal";
-import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {addNewTask, getAllTasks} from "../../store/actions/tasks.actions";
 
 const TodoPage = () => {
-  const [posts, setPosts] = useState([])
+  const tasks = useSelector(state => state.tasks.tasksList)
+  const dispatch = useDispatch()
   const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(false)
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/tasks`)
-    .then(res => {
-      if (res.status === 200) {
-        setPosts(res.data)
-      }
-    })
-    .catch(e => {
-      console.log(e)
-    })
+    dispatch(getAllTasks())
   }, [])
 
-  const addNewTask = (taskTitle, taskText, date) => {
-    axios.post('http://localhost:8000/api/tasks', {
-      taskText,
-      taskTitle,
-      date
-    }).then(res => {
-      if (res.status === 200) {
-        setPosts([...posts, res.data])
-      }
-    }).catch(e => {
-      console.log(e)
-    }).finally(() => {
-      return true
-    })
+
+  const addNewTaskHandler = (taskTitle, taskText, date) => {
+    dispatch(addNewTask({
+      title: taskTitle,
+      content: taskText,
+      isActive: false,
+      author: 'Denis'
+    }))
   }
 
   return <div className={styles.TodoPage}>
@@ -48,16 +36,16 @@ const TodoPage = () => {
 
       <div className={styles.Cont}>
         <p className={styles.Cont__title}>
-          v Today {posts.length && `(${posts.length})`}
+          v Today {tasks.length && `(${tasks.length})`}
         </p>
 
         {
-          posts.length > 0 && <div>
+          tasks.length > 0 && <div>
             {
-              posts.map(el => {
+              tasks.map((el, i) => {
                 return <Task
                   el={el}
-                  key={el._id}
+                  key={i}
                 />
               })
             }
@@ -73,7 +61,7 @@ const TodoPage = () => {
 
     {
       showAddNewTaskModal && <AddNewTaskModal
-        addNewTask={addNewTask}
+        addNewTask={addNewTaskHandler}
         setShow={setShowAddNewTaskModal}
       />
     }
