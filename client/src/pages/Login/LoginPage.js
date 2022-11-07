@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styles from "./LoginPage.module.css"
 import InputField from "../../components/InputField/InputField";
+import Button from "../../components/Button/Button";
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
@@ -22,8 +23,10 @@ const LoginPage = () => {
         setValue={setPassword}
       />
 
-      {/*<button>Go</button>*/}
-      {/*<button>Reg</button>*/}
+      <div className={styles.LoginPage__btns}>
+        <Button w={'49%'} type={'outline'}>Registration</Button>
+        <Button w={'49%'} type={'submit'}>Sign in</Button>
+      </div>
     </div>
   </div>
 }
