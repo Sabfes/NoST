@@ -17,3 +17,10 @@
     flex-direction: column;
     width: 24rem;
 }
+
+.LoginPage__btns {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
