@@ -1,1 +1,1 @@
-export const ServerString = 'http://localhost:3030'
+export const ServerString = 'http://localhost:8000'

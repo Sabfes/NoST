@@ -1,63 +1,39 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import styles from "./TodoPage.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 import Task from "../../components/Task/Task";
 import AddNewTaskModal from "../../components/AddNewTaskModal/AddNewTaskModal";
-import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllTasks} from "../../store/actions/tasks.actions";
 
 const TodoPage = () => {
-  const [posts, setPosts] = useState([])
-  const [showAddNewTaskModal, setShowAddNewTaskModal] = useState(false)
+  const tasks = useSelector(state => state.tasks.tasksList)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/tasks`)
-    .then(res => {
-      if (res.status === 200) {
-        setPosts(res.data)
-      }
-    })
-    .catch(e => {
-      console.log(e)
-    })
-  }, [])
-
-  const addNewTask = (taskTitle, taskText, date) => {
-    axios.post('http://localhost:8000/api/tasks', {
-      taskText,
-      taskTitle,
-      date
-    }).then(res => {
-      if (res.status === 200) {
-        setPosts([...posts, res.data])
-      }
-    }).catch(e => {
-      console.log(e)
-    }).finally(() => {
-      return true
-    })
-  }
+    dispatch(getAllTasks())
+  }, [dispatch])
 
   return <div className={styles.TodoPage}>
     <Sidebar/>
 
     <div className={styles.mainCont}>
-      <Header
-        setShowAddTaskModal={setShowAddNewTaskModal}
-      />
+      <Header />
 
       <div className={styles.Cont}>
         <p className={styles.Cont__title}>
-          v Today {posts.length && `(${posts.length})`}
+          v Today {tasks.length && `(${tasks.length})`}
         </p>
 
         {
-          posts.length > 0 && <div>
+          tasks.length > 0 && <div>
             {
-              posts.map(el => {
+              tasks.map((el, i) => {
                 return <Task
                   el={el}
-                  key={el._id}
+                  index={tasks.length - i}
+                  key={i}
                 />
               })
             }
@@ -66,17 +42,9 @@ const TodoPage = () => {
       </div>
     </div>
 
-    <div className={styles.contInfo}>
-
+    <div className={styles.TodoInfoContainer}>
+      <AddNewTaskModal />
     </div>
-
-
-    {
-      showAddNewTaskModal && <AddNewTaskModal
-        addNewTask={addNewTask}
-        setShow={setShowAddNewTaskModal}
-      />
-    }
   </div>
 }
 export default TodoPage

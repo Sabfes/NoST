@@ -5,9 +5,10 @@ class TaskController {
   async createTask(req, res) {
     try {
       const post = await Task.create({
-        author: req.body.author,
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content,
+        isActive: req.body.isActive,
+        author: req.body.author,
       })
       res.status(200).json(post)
     } catch (e) {
@@ -56,11 +57,11 @@ class TaskController {
   // Удаление Task
   async deleteTask(req, res) {
     try {
-      if (!req.body.id) {
+      if (!req.params.id) {
         res.status(400).json('Id не указан')
       } else {
-        const postId = req.body.id
-        const deletedTask = Task.findByIdAndDelete(postId)
+        const postId = req.params.id
+        const deletedTask = await Task.findByIdAndDelete(postId)
         res.status(200).json(deletedTask)
       }
     } catch (e) {

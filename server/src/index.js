@@ -24,10 +24,9 @@ const startApp = async () => {
   try {
     await mongoose.connect(
       DB_URL,
-      {useUnifiedTopologyf: true, useNewUrlParser: true}
+      {useNewUrlParser: true}
     )
     app.listen(PORT, () => {
-      console.clear();
       console.log('app init')
     })
   } catch (e) {

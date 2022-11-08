@@ -15,5 +15,12 @@
     transform: translateY(-100px);
     display: flex;
     flex-direction: column;
-    width: 24rem;
+    width: 25rem;
+}
+
+.LoginPage__btns {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

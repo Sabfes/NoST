@@ -1,0 +1,48 @@
+.Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    outline: none;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    max-width: 15rem;
+    min-width: 8rem;
+    width: 100%;
+    transition: .5s;
+}
+
+.Button__text {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+/*BUTTON type outline*/
+.Button_type_outline {
+    background: transparent;
+    border: 2px solid #5e6f82;
+}
+.Button_type_outline:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 19px 8px rgba(94, 111, 130, 0.2);
+}
+.Button_type_outline .Button__text {
+    font-weight: bold;
+    color: #5e6f82;
+}
+
+/*BUTTON type submit*/
+.Button_type_submit {
+    border: none;
+    background: #2eb22e;
+}
+.Button_type_submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 19px 8px rgba(46, 178, 46, 0.2);
+
+}
+.Button_type_submit .Button__text {
+    font-weight: bolder;
+}
