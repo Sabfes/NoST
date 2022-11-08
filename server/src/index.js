@@ -27,7 +27,6 @@ const startApp = async () => {
       {useNewUrlParser: true}
     )
     app.listen(PORT, () => {
-      console.clear();
       console.log('app init')
     })
   } catch (e) {
